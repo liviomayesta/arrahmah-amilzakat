@@ -469,46 +469,77 @@ tbody tr:hover td{background:#f8faf8}
 
   <!-- Panel: RT -->
   <div class="panel" id="p-rt">
-    <div class="rt-grid" style="margin-bottom:1.25rem">
-      <div class="rt-card">
-        <div class="rt-badge" style="background:#e8f4ec;color:#0b4d2e">RT 05</div>
-        <div class="rt-num">10</div>
-        <div class="rt-sub">jiwa penerima</div>
-        <div class="rt-detail">50 kg · Rp 5.500.000</div>
-        <div style="font-size:10px;color:#aaa;margin-top:3px">Petugas: Warsono</div>
+
+    <!-- Gate: form login -->
+    <div id="rt-gate" style="display:flex;flex-direction:column;align-items:center;justify-content:center;padding:3rem 1rem;text-align:center">
+      <div style="width:52px;height:52px;background:#e8f4ec;border-radius:50%;display:flex;align-items:center;justify-content:center;margin-bottom:1rem">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#0b4d2e" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/>
+        </svg>
       </div>
-      <div class="rt-card">
-        <div class="rt-badge" style="background:#fef5e6;color:#7a4a0a">RT 06</div>
-        <div class="rt-num">52</div>
-        <div class="rt-sub">jiwa penerima</div>
-        <div class="rt-detail">260 kg · Rp 28.600.000</div>
-        <div style="font-size:10px;color:#aaa;margin-top:3px">Petugas: Sapriyadi</div>
-      </div>
-      <div class="rt-card">
-        <div class="rt-badge" style="background:#e8f2fc;color:#1a5fa5">RT 07</div>
-        <div class="rt-num">50</div>
-        <div class="rt-sub">jiwa penerima</div>
-        <div class="rt-detail">250 kg · Rp 27.500.000</div>
-        <div style="font-size:10px;color:#aaa;margin-top:3px">Petugas: Asparera</div>
-      </div>
-      <div class="rt-card">
-        <div class="rt-badge" style="background:#f2eafc;color:#5a2a9a">RT 08</div>
-        <div class="rt-num">38</div>
-        <div class="rt-sub">jiwa penerima</div>
-        <div class="rt-detail">190 kg · Rp 20.900.000</div>
-        <div style="font-size:10px;color:#aaa;margin-top:3px">Petugas: Amiwadi/Agus F</div>
+      <div style="font-size:14px;font-weight:600;color:#1a1a1a;margin-bottom:4px">Data Mustahiq per RT</div>
+      <div style="font-size:12px;color:#8a9a8a;margin-bottom:1.5rem">Masukkan kata sandi untuk mengakses data ini</div>
+      <div style="width:100%;max-width:280px">
+        <input id="rt-pw-input" type="password" placeholder="Kata sandi..." autocomplete="off"
+          style="width:100%;padding:10px 14px;border:1px solid #d0dcd0;border-radius:10px;font-size:13px;background:#fff;color:#1a1a1a;margin-bottom:10px;outline:none"
+          onkeydown="if(event.key==='Enter')cekSandi()">
+        <div id="rt-pw-err" style="font-size:11.5px;color:#c0392b;margin-bottom:8px;display:none">Kata sandi salah, coba lagi.</div>
+        <button onclick="cekSandi()"
+          style="width:100%;padding:10px;background:#0b4d2e;color:#fff;border:none;border-radius:10px;font-size:13px;font-weight:600;cursor:pointer">
+          Buka Data
+        </button>
       </div>
     </div>
-    <div class="tbl-wrap">
-      <div class="tbl-scroll" style="max-height:420px;overflow-y:auto">
-        <table>
-          <thead style="position:sticky;top:0;z-index:1">
-            <tr><th>#</th><th>Nama Mustahiq</th><th>RT</th><th style="text-align:center">Beras</th><th style="text-align:right">Uang</th></tr>
-          </thead>
-          <tbody id="tb-rt"></tbody>
-        </table>
+
+    <!-- Konten RT (tersembunyi sampai login) -->
+    <div id="rt-content" style="display:none">
+      <div class="rt-grid" style="margin-bottom:1.25rem">
+        <div class="rt-card">
+          <div class="rt-badge" style="background:#e8f4ec;color:#0b4d2e">RT 05</div>
+          <div class="rt-num">10</div>
+          <div class="rt-sub">jiwa penerima</div>
+          <div class="rt-detail">50 kg · Rp 5.500.000</div>
+          <div style="font-size:10px;color:#aaa;margin-top:3px">Petugas: Warsono</div>
+        </div>
+        <div class="rt-card">
+          <div class="rt-badge" style="background:#fef5e6;color:#7a4a0a">RT 06</div>
+          <div class="rt-num">52</div>
+          <div class="rt-sub">jiwa penerima</div>
+          <div class="rt-detail">260 kg · Rp 28.600.000</div>
+          <div style="font-size:10px;color:#aaa;margin-top:3px">Petugas: Sapriyadi</div>
+        </div>
+        <div class="rt-card">
+          <div class="rt-badge" style="background:#e8f2fc;color:#1a5fa5">RT 07</div>
+          <div class="rt-num">50</div>
+          <div class="rt-sub">jiwa penerima</div>
+          <div class="rt-detail">250 kg · Rp 27.500.000</div>
+          <div style="font-size:10px;color:#aaa;margin-top:3px">Petugas: Asparera</div>
+        </div>
+        <div class="rt-card">
+          <div class="rt-badge" style="background:#f2eafc;color:#5a2a9a">RT 08</div>
+          <div class="rt-num">38</div>
+          <div class="rt-sub">jiwa penerima</div>
+          <div class="rt-detail">190 kg · Rp 20.900.000</div>
+          <div style="font-size:10px;color:#aaa;margin-top:3px">Petugas: Amiwadi/Agus F</div>
+        </div>
+      </div>
+      <div class="tbl-wrap">
+        <div class="tbl-scroll" style="max-height:420px;overflow-y:auto">
+          <table>
+            <thead style="position:sticky;top:0;z-index:1">
+              <tr><th>#</th><th>Nama Mustahiq</th><th>RT</th><th style="text-align:center">Beras</th><th style="text-align:right">Uang</th></tr>
+            </thead>
+            <tbody id="tb-rt"></tbody>
+          </table>
+        </div>
+      </div>
+      <div style="margin-top:1rem;text-align:right">
+        <button onclick="kunciRT()" style="font-size:11.5px;padding:6px 14px;background:#fff;border:1px solid #d0dcd0;border-radius:8px;cursor:pointer;color:#6b7b6b">
+          Kunci kembali
+        </button>
       </div>
     </div>
+
   </div>
 
   <!-- Panel: Rekap -->
@@ -633,6 +664,32 @@ function sw(name,el){
   document.querySelectorAll('.tab-btn').forEach(b=>b.classList.remove('on'));
   document.getElementById('p-'+name).classList.add('on');
   el.classList.add('on');
+}
+
+let rtUnlocked=false;
+
+function cekSandi(){
+  const val=document.getElementById('rt-pw-input').value;
+  const err=document.getElementById('rt-pw-err');
+  if(val==='arrahmah1447'){
+    rtUnlocked=true;
+    document.getElementById('rt-gate').style.display='none';
+    document.getElementById('rt-content').style.display='block';
+    err.style.display='none';
+    buildRT();
+  } else {
+    err.style.display='block';
+    document.getElementById('rt-pw-input').value='';
+    document.getElementById('rt-pw-input').focus();
+  }
+}
+
+function kunciRT(){
+  rtUnlocked=false;
+  document.getElementById('rt-gate').style.display='flex';
+  document.getElementById('rt-content').style.display='none';
+  document.getElementById('rt-pw-input').value='';
+  document.getElementById('rt-pw-err').style.display='none';
 }
 
 buildPenerimaan();
